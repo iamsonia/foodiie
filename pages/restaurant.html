@@ -1,0 +1,62 @@
+
+<div ng-controller="restaurantController">
+<!-- <div>Restaurant info goes here</div>  <!--now create controller i.e restaurantController for the div and then also define url i.e hashbang !#  -->
+<h1>show {{restaurantId}}  details here</h1>
+
+<div class="restaurant" ng-if="restaurant.name" >  <!--ng-if is another directive which only shows screen if ng-if cndn is satisfied otherwise show blank screen-->
+    <div class="rest-wrapper">
+        <div class="image">
+            <img ng-src="{{restaurant.image}}" height="100" width="100">    <!-- bcoz many errors come related to image bcoz in angular it read {{}} as a braces so it is necessary to add ng-src-->
+        </div>
+        <div class="rest-info">
+            <div class="rest-category">
+               <small>{{restaurant.category}} </small>
+            </div>
+            <div class="rest-name">
+          <strong>{{restaurant.name}}</strong>
+            </div>
+            <div>
+               <strong> {{restaurant.location}}</strong>
+            </div>
+            <div class="rest-address">
+                {{restaurant.address}}
+            </div>
+        </div>
+    </div>
+    <div class="rest-extra">
+        <div class="type">
+            <div><small>Cuisines:</small></div>
+            <div><small>Cost for Two: </small></div>
+            <div><small>Hours:</small></div>
+             <div ng-if="restaurant.bestDish"><small>Recommended: </small></div>
+        </div>
+        <div class="value">
+            <div>{{restaurant.cuisines}}</div>
+            <div>₹{{restaurant.cost | number}}</div>
+            <div>{{restaurant.hours}}</div>
+            <div class="bestDish" ng-if="restaurant.bestDish">
+         <span>{{restaurant.bestDish.name}} </span>
+         <div class="button" ng-click="getIngredients(restaurant.bestDish.image)">Get Ingredients</div>   <!--now we have also want to get ingredients on clicking of a button so we used a directive called ng-click here on click we just get our image i.e Jalebi anf for accesing this we have also make fn in js file also and it is defined inside the restaurantController-->
+   </div>
+        </div>
+    </div>
+    <div class="rating">
+        <strong>{{restaurant.vote}}</strong>
+    </div>
+    <div class="show">
+          <button><i class="glyphicon glyphicon-earphone"></i>Call</button>
+          <button><i class="glyphicon glyphicon-star"></i>Save</button>
+          <button><i class="glyphicon glyphicon-picture"></i>Photos</button>
+        </div>
+  
+   <div ng-if="ingredients">                   <!-- in ng-if This list will only be shown when $scope.ingredients variable is not empty-->
+    <ol>
+    <li ng-repeat="ingredient in ingredients">
+    {{ingredient}}
+    </li>
+    </ol>
+</div>
+
+
+</div>
+</div>

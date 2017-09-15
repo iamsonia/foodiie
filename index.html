@@ -1,0 +1,46 @@
+<!DOCTYPE html>                       <!--for increasing size of screen use ctrl and +-for decreasing use ctrl shift and +-       anf for comment use ctrl and /-->
+<html lang="en" ng-app='foodieApp'>    <!--'ng-app' attribute tells about angularjs. If we wanted angular to just be in a small portion of the website, we would write the 'ng-app' attribute inside that tag and if we  want for whole document then we just write the 'ng-app' attribute in the whole document i.e. the html tag   //by adding foodieapp we give name to the app-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Foodie</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="main.css">
+    <script src="angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.6.5/angular-route.js"></script> <!-- this is the link from where download -->
+    <!--  <script src="angular-route.js"></script> it is the angular file ie downloaded  by goving this we can use routing -->
+
+    <style>
+     /*.ng-invalid {            //by applyng this every box border is of red color but we want that where we dont write only there red color is come
+        border: 1px solid red;
+    }*/
+
+    /*input.ng-invalid {    //now modify above coding like this just add input  at leftmost .after that only email and pswrd box appear in red and also form box but we dont want that form box also come in red
+            border: 1px solid red;
+        }*/
+
+        input.ng-invalid.ng-dirty {  /* now modify above coding like this just add input  at leftmost .after that only email and pswrd box appear in red*/
+            border: 1px solid red;
+        }
+
+    </style>
+</head>
+
+<body id="app">
+
+
+   <!-- All controllers  like login and main put in diff html file ang save by logincontroller.html and maincontroller.html and then make a folder by name pages and u save these both htm files in the new folder ie pages -->
+
+    <!--  AIzaSyCmS9Go3gZiefIqNXKY-9qr5gvoMY6bZjE      api key for map-->
+
+ <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key= AIzaSyCmS9Go3gZiefIqNXKY-9qr5gvoMY6bZjE&callback=initMap"
+  type="text/javascript"></script> -->
+    <div ng-view=""></div>  <!-- as we placed controllers in diff html file so for view it required something so that why we add ng-view and 'ng-view' is a directive that we use to tell angular where we want to show our view inside So whenever the url(route) is changed, Angular only updates the content inside this 'ng-view' div-->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

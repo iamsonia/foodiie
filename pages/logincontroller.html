@@ -1,0 +1,52 @@
+<div class="login" ng-controller="loginController">   <!--by adding hidden we hide the form and display restaurant area given in main class-->
+        <div class="login-form">   <!--form tag is a power wrapper inside which we write our input tags. it has some attributes that we can use to send information to the server, without writing any JavaScript!-->
+            <h3> Login </h3>
+            <!--form action="" method="POST">    //action attribute is where we write the URL and where we send info and method tells that how we send info and here method has 2 values get and post . post is more secure than get ,get is for public and post is like pswrd
+                <div class="form-group">    // 'form-group' is part of bootstrap that we got when we copy pasted a form example in our HTML file
+                    <label for="exampleInputEmail1">Email address</label>     //label tag is used to show the name of an input field
+                    <input type="text" class="form-control" id="user-email" placeholder="Email" ng-model="email">           //ng-model used for binding the variable and this attribute creates a model called 'email' and links its value with the form input value . here we write email in ng-model so after @ text is only shown at main part and if we change input by text then whole part written in email is shown with welcome back.
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="user-password" placeholder="Password">
+                </div>
+                <div class='welcome-message'>Welcome back {{email}}</div> //{{email}} is the evolutionary function it is always put in 2 curly braces and first we put that in ng-model . here we write evolutionary function so with welcome back all text under  is shown to us
+                <div type="submit" class="btn btn-default">Login</div>
+            </form-->
+            <!--form action="http://sarthakbatra.com/loginSubmit" method="POST" name="loginForm">
+            <form name="loginForm">
+    <div class="form-group">
+        <label for="user-email">Email address</label>
+        <input type="email" class="form-control" id="user-email" placeholder="Email" name="email" required="" ng-model="user.email">
+    </div>
+    <div class="form-group">
+        <label for="user-password">Password</label>
+        <input type="password" class="form-control" id="user-password" placeholder="Password" name="password" required="" ng-model="user.password">
+    </div>
+    <button type="submit" class="btn btn-default">Login</button>
+</form-->
+<form name="loginForm">    <!--modification of above code and in this we have to show message where user are wrong-->
+    <div class="form-group">   <!--for email -->
+        <label for="user-email">Email address</label>
+        <input type="email" class="form-control" id="user-email" placeholder="Email" name="email" ng-model="user.email" required="">        <!--The required attribute tells our browser that this form element is required, and you should not submit the form if it is not filled in-->
+        <div ng-show="loginForm.email.$error.required"></div>
+        <div ng-show="loginForm.email.$error.email">This doesn't look like a valid email</div>   <!--$error is not something related to jQuery It's an object that angular adds to our input if there is any 'error'-->
+    </div>
+    <div class="form-group">   <!--for pswrd-->
+    <label for="user-password">Password</label>
+    <input type="password" class="form-control" id="user-password" placeholder="Password" name="password" required="" ng-model="user.password" ng-minlength="6" ng-maxlength="15">
+    <div ng-show="loginForm.password.$error.minlength">
+    Password must be at least 6 characters long
+    </div>
+    <div ng-show="loginForm.password.$error.maxlength">
+    Password must be at most 15 characters long
+    </div>
+    <div ng-show="loginForm.password.$error.required">
+    Please enter your super secret ninja password
+    </div>
+</div>
+    <button type="submit" class="btn btn-default" ng-disabled="loginForm.$invalid" ng-click="gotohome()">Login</button> <!--ng-click apply here validation that on click to login only we get home screen now for access this we have to define its in logincontroller file also-->
+    <div id="abc">WELCOME {{user.emai}}</div>
+  </form>
+        </div>
+    </div>

@@ -1,0 +1,87 @@
+<div class="main" ng-controller="mainController">  <!--ng-controller links our HTML code with the controller we just made    // we remove hidden so thats we get screen with image wgen we add hidden in form-->
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Foodie</a>
+                    <button type="button" ng-click="foodListApp()" class="button1">Fav ingredients</button>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                      <li><a href="#!/home">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Order Online</a></li>
+                        <li><a href="#!/">logout</a></li>  <!-- by giving / we come  back  to login page.  combination of !#/ & !#/home is angular routing-->
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+
+	  <div class="ui container">
+    <div class="search-bar">                      <!-- it  is defined for searchh making search box -->
+    <form>
+    <div class="input-wrapper">
+      <input type="text" class="form-control" placeholder="Search..." ng-model="query">        <!-- ng-model query is used bcoz we have to search  all restaurant in input box -->
+    </div>
+    <button type="submit" class="btn btn-default">Search</button>
+  </form>
+</div>
+            <div class="hero" >
+                <p>Find the best restaurants in town</p>
+            </div>
+            <!--div ng-repeat="restaurant in restaurants"-->  <!--We are using a new directive here called 'ng-repeat'.This directive is used to loop over an array/object and for each value inside it, do something Here it loops over the restaurants property and displays the name .restaurant in restaurants . Do in the first iteration, it displays the name of the first restaurant .Second time, it displays the name of the second restaurant-->
+                <!--{{restaurant}} -->    <!--evolutionary function-->
+                 <!--{{restaurant.name}} -->     <!--evolutionary function. here we use restaurant except restaurants bcoz restaurants is use to display all details of restaurant and  .name is used to call object i.e farzi cafe but it is only to call name and we want all attributes . to display all values just create div for all  attributes-->
+            <div ng-repeat="restaurant in restaurants |filter:query" class="restaurant" ng-if="restaurant.name"><!-- here filter is a filter name that filter all things acc to our requirement and query mean this filter is applied to query mean in search box -->
+    			<div class="rest-wrapper">
+        			<div class="image">
+            			<img ng-src="{{restaurant.image}}" height="100" width="100">
+        			</div>
+       		 	<div class="rest-info">
+            		<div class="rest-category">
+             			  <small>{{restaurant.category}} </small>
+            		</div>
+            		<div class="rest-name">
+            			<a ng-href="#!/restaurant/{{restaurant.id}}"><strong>{{restaurant.name}}</strong></a>  <!--error in href-- error  -->
+            		</div>
+            		<div>
+               		<strong> {{restaurant.location}}</strong>
+            		</div>
+            		<div class="rest-address">{{restaurant.address}}</div>
+       			 </div>
+
+				</div>
+    				<div class="rest-extra">
+        				<div class="type">
+				            <div><small>Cuisines:</small></div>
+				            <div><small>Cost for Two: </small></div>
+				            <div><small>Hours:</small></div>
+				            <div><small>Contact:</small></div>
+       					</div>
+				        <div class="value">
+				            <div>{{restaurant.cuisines}}</div>
+				            <div>₹{{restaurant.cost | number}}</div>    <!-- here | is a symbol of using filters so symbal of using filter is {{modelname | filter}}and we can google various filters here we used no filter it write price 2200 as 2,200 and for rupee sign just copy and paste here ie above the evolutionary function -->
+				            <div>{{restaurant.hours}}</div>
+				            <div>{{restaurant.phone}}</div>
+				        </div>
+				    </div>
+   					<div class="rating">
+				        <strong>{{restaurant.vote}}</strong>
+				    </div>
+				    <div class="show">
+			            <button><i class="glyphicon glyphicon-earphone"></i>Call</button>
+			            <button><i class="glyphicon glyphicon-star"></i>Save</button>
+			            <button><i class="glyphicon glyphicon-picture"></i>Photos</button>
+		            </div>
+	    </div>
+    </div>
+</div>
